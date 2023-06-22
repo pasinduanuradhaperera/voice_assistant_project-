@@ -1,4 +1,3 @@
-#import speech_recognition as sr
-import pyAudio
+import speech_recognition as sr
 
 listener = sr.Recognizer()
