@@ -9,6 +9,9 @@ try:
         time.sleep(1)
         voice = listener.listen(source)
         command = listener.recognize_google(voice)
+        command = command.lower()
+        if 'alexa' in command:
+            print(command)
         print(command)
 
 except:
