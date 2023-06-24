@@ -1,6 +1,7 @@
 import speech_recognition as sr
 import pyttsx3
 import time
+import intro
 
 listener = sr.Recognizer()  # listener Object
 engine = pyttsx3.init()
@@ -9,9 +10,7 @@ voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[1].id)
 engine.setProperty('rate', 150)
 
-engine.say('I am multy ')
-engine.say('What can I do for you')
-engine.runAndWait()
+intro.intro()
 
 
 try:
