@@ -10,7 +10,7 @@ voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[1].id)
 engine.setProperty('rate', 150)
 
-intro.intro()
+
 
 
 try:
@@ -20,11 +20,9 @@ try:
         voice = listener.listen(source)
         command = listener.recognize_google(voice)
         command = command.lower()
-        if 'hey' in command:
-            if 'multy ' in command:
-                engine.say(command)
-                engine.runAndWait()
-                print(command)
+        if 'multy ' in command:
+            intro.intro()
+            print(command)
 
 
 
