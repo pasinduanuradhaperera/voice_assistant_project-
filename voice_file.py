@@ -8,6 +8,6 @@ engine.setProperty('rate', 150)
 
 
 def intro():
-    engine.say('I am multy ')
+    engine.say('I am multy')
     engine.say('What can I do for you')
     engine.runAndWait()

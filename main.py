@@ -1,32 +1,36 @@
 import speech_recognition as sr
-import pyttsx3
-import time
-import intro
+import voice_file as vo
 
 listener = sr.Recognizer()  # listener Object
-engine = pyttsx3.init()
-voices = engine.getProperty('voices')
+speech = sr.Microphone(2)  # change microphone option
 
-engine.setProperty('voice', voices[1].id)
-engine.setProperty('rate', 150)
+while 1:
+    with speech as source:
+        print('Listening...')  # indicator for listening
+        command = listener.adjust_for_ambient_noise(source)
+        voice = listener.listen(source, None, 3)
 
+        print('audio is recorded')
+        try:
+            print("api is enabled")
+            command = listener.recognize_google(voice, language='en-US')
+            # for testing purposes, we're just using the default API key
+            # to use another API key, use r.recognize_google(audio)
+            # instead of r.recognize_google(audio)
 
+            command = command.lower()
 
+            if 'multi' in command:
+                vo.intro()  # call introduction
+                print(command)
+            elif 'exit' in command:
+                break
+            else:
 
-try:
-    with sr.Microphone() as source:  # if create a object
-        print('Listening...')
-        time.sleep(1)
-        voice = listener.listen(source)
-        command = listener.recognize_google(voice)
-        command = command.lower()
-        if 'multy ' in command:
-            intro.intro()
-            print(command)
+                print('what',command)
+        except sr.UnknownValueError:
+            print("Google Speech Recognition could not understand audio")
+        except sr.RequestError as e:
+            print("Could not request results from Google Speech Recognition service; {0}".format(e))
 
-
-
-
-except:
-    pass
-
+print('program ends')
