@@ -3,7 +3,7 @@ import command_file as com
 
 while 1:
     command= com.listening()
-    if command is not None and 'hey google' in command:
+    if command is not None and 'hey abc' in command:
         vo.intro()
         print('you say \'', command, '\'')
         command = ''
